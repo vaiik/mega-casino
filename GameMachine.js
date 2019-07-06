@@ -49,6 +49,10 @@ class GameMachine {
       const uniqueDigitsCount = [...new Set(digits)].length;
       let winning;
 
+      // const uniqueNumbers = {};
+      // randNumber.toString().split("").forEach(number => uniqueNumbers[number] = number);
+      // return Object.keys(uniqueNumbers).length;
+
       switch (uniqueDigitsCount) {
         case 1: // 3 same digits
           winning = betAmount * 3;

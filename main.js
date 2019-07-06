@@ -10,17 +10,23 @@ const userStorage = new UserStorage();
 const casinoStorage = new CasinoStorage();
 
 function register(name, money, type) {
-  const user =
-    type === UserType.User
-      ? new User(name, money)
-      : new SuperAdmin(name, money);
+  if (!Number.isInteger(money) || money < 0) {
+    window.printError(
+      "You must type money as integer value and bigger than zero."
+    );
+  } else {
+    const user =
+      type === UserType.User
+        ? new User(name, money)
+        : new SuperAdmin(name, money);
 
-  userStorage.save(user);
+    userStorage.save(user);
 
-  window.user = user;
-  window.printInfo(`Welcome, {${user.name}}. You are now logged in.`);
-  window.printInfo(`Your current balance is {$${user.money}}.`);
-  user.lookAround();
+    window.user = user;
+    window.printInfo(`Welcome, {${user.name}}. You are now logged in.`);
+    window.printInfo(`Your current balance is {$${user.money}}.`);
+    user.lookAround();
+  }
 }
 
 function login(name) {
